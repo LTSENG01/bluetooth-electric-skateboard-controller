@@ -14,11 +14,12 @@
 		465288F31EFC55C300376E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 465288F21EFC55C300376E1A /* Assets.xcassets */; };
 		465288F61EFC55C300376E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465288F41EFC55C300376E1A /* LaunchScreen.storyboard */; };
 		465289011EFC918600376E1A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465288FE1EFC55D900376E1A /* CoreBluetooth.framework */; };
+		46ABCB9E1EFEC68C0071AF0E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46930C051EFEBFE5007A47C9 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		460C4B821EFE17BB00ACCEC2 /* BTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTManager.swift; sourceTree = "<group>"; };
-		465288E81EFC55C300376E1A /* BluetoothArduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothArduino.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		465288E81EFC55C300376E1A /* BTElectricSkateboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTElectricSkateboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		465288EB1EFC55C300376E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		465288ED1EFC55C300376E1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		465288F01EFC55C300376E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46ABCB9E1EFEC68C0071AF0E /* CoreMotion.framework in Frameworks */,
 				465289011EFC918600376E1A /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,7 +46,7 @@
 		465288DF1EFC55C300376E1A = {
 			isa = PBXGroup;
 			children = (
-				465288EA1EFC55C300376E1A /* BluetoothArduino */,
+				465288EA1EFC55C300376E1A /* BTElectricSkateboard */,
 				465288E91EFC55C300376E1A /* Products */,
 				465288FD1EFC55D900376E1A /* Frameworks */,
 			);
@@ -53,12 +55,12 @@
 		465288E91EFC55C300376E1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				465288E81EFC55C300376E1A /* BluetoothArduino.app */,
+				465288E81EFC55C300376E1A /* BTElectricSkateboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		465288EA1EFC55C300376E1A /* BluetoothArduino */ = {
+		465288EA1EFC55C300376E1A /* BTElectricSkateboard */ = {
 			isa = PBXGroup;
 			children = (
 				465288EB1EFC55C300376E1A /* AppDelegate.swift */,
@@ -69,7 +71,7 @@
 				465288F41EFC55C300376E1A /* LaunchScreen.storyboard */,
 				465288F71EFC55C300376E1A /* Info.plist */,
 			);
-			path = BluetoothArduino;
+			path = BTElectricSkateboard;
 			sourceTree = "<group>";
 		};
 		465288FD1EFC55D900376E1A /* Frameworks */ = {
@@ -84,9 +86,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		465288E71EFC55C300376E1A /* BluetoothArduino */ = {
+		465288E71EFC55C300376E1A /* BTElectricSkateboard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 465288FA1EFC55C300376E1A /* Build configuration list for PBXNativeTarget "BluetoothArduino" */;
+			buildConfigurationList = 465288FA1EFC55C300376E1A /* Build configuration list for PBXNativeTarget "BTElectricSkateboard" */;
 			buildPhases = (
 				465288E41EFC55C300376E1A /* Sources */,
 				465288E51EFC55C300376E1A /* Frameworks */,
@@ -96,9 +98,9 @@
 			);
 			dependencies = (
 			);
-			name = BluetoothArduino;
+			name = BTElectricSkateboard;
 			productName = BluetoothArduino;
-			productReference = 465288E81EFC55C300376E1A /* BluetoothArduino.app */;
+			productReference = 465288E81EFC55C300376E1A /* BTElectricSkateboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -116,7 +118,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 465288E31EFC55C300376E1A /* Build configuration list for PBXProject "BluetoothArduino" */;
+			buildConfigurationList = 465288E31EFC55C300376E1A /* Build configuration list for PBXProject "BTElectricSkateboard" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -129,7 +131,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				465288E71EFC55C300376E1A /* BluetoothArduino */,
+				465288E71EFC55C300376E1A /* BTElectricSkateboard */,
 			);
 		};
 /* End PBXProject section */
@@ -290,7 +292,7 @@
 				DEVELOPMENT_TEAM = MZV7Q3YFM6;
 				INFOPLIST_FILE = BluetoothArduino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.larrytseng.BluetoothArduino;
+				PRODUCT_BUNDLE_IDENTIFIER = com.larrytseng.BTElectricSkateboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,7 +306,7 @@
 				DEVELOPMENT_TEAM = MZV7Q3YFM6;
 				INFOPLIST_FILE = BluetoothArduino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.larrytseng.BluetoothArduino;
+				PRODUCT_BUNDLE_IDENTIFIER = com.larrytseng.BTElectricSkateboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,7 +316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		465288E31EFC55C300376E1A /* Build configuration list for PBXProject "BluetoothArduino" */ = {
+		465288E31EFC55C300376E1A /* Build configuration list for PBXProject "BTElectricSkateboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				465288F81EFC55C300376E1A /* Debug */,
@@ -323,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		465288FA1EFC55C300376E1A /* Build configuration list for PBXNativeTarget "BluetoothArduino" */ = {
+		465288FA1EFC55C300376E1A /* Build configuration list for PBXNativeTarget "BTElectricSkateboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				465288FB1EFC55C300376E1A /* Debug */,

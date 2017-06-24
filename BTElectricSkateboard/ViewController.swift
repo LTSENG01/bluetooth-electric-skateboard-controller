@@ -32,29 +32,27 @@ class ViewController: UIViewController, BTManagerDelegate {
         lastSpeed = currentSpeed
     }
     
-    // MARK: Gyro Mode
+    // MARK: - Motion Mode - refers to the pitch of the device
     
-    var gyroMode: Bool = false
+    var motionMode: Bool = false
     
-    @IBAction func toggleGyroMode(_ sender: Any) {
-        gyroMode = !gyroMode
+    @IBAction func toggleMotionMode(_ sender: Any) {
+        motionMode = !motionMode
         
-        if gyroMode {
-            print("Starting gyro mode!")
-            //motionManager.startGyroUpdates()
+        if motionMode {
+            print("Starting Device Motion mode!")
             motionManager.startDeviceMotionUpdates()
-            readGyroOutput()
+            readMotionOutput()
         }
         
-        if !gyroMode {
-            //motionManager.stopGyroUpdates()
+        if !motionMode {
             motionManager.stopDeviceMotionUpdates()
         }
     }
     
-    @IBOutlet weak var gyroStatus: UILabel!
+    @IBOutlet weak var motionStatus: UILabel!
     
-    @objc func readGyroOutput() {
+    @objc func readMotionOutput() {
         if let data = motionManager.deviceMotion?.attitude.pitch {
             print(data)
         }
@@ -108,12 +106,11 @@ class ViewController: UIViewController, BTManagerDelegate {
     
     override func viewDidLoad() {
         btManager.delegate = self
-        motionManager.gyroUpdateInterval = 0.5
         motionManager.deviceMotionUpdateInterval = 0.5
         btConnectionIsNotReady()
         speedLabel.text = "0";
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(readGyroOutput), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(readMotionOutput), userInfo: nil, repeats: true)
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -121,10 +118,6 @@ class ViewController: UIViewController, BTManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func update() {
-        
     }
     
     // MARK: - BTManagerDelegate
