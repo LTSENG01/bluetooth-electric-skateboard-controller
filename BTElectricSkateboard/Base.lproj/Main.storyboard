@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BluetoothArduino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BTElectricSkateboard" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -146,10 +146,12 @@
                     </view>
                     <connections>
                         <outlet property="directionLabel" destination="IIH-vn-LP9" id="e4x-zt-KJ9"/>
-                        <outlet property="gyroStatus" destination="6py-pP-FLY" id="KOC-wb-tNC"/>
+                        <outlet property="motionModeButton" destination="a3s-J7-m8u" id="T0u-UM-z3M"/>
+                        <outlet property="motionStatus" destination="6py-pP-FLY" id="jGC-l0-zse"/>
                         <outlet property="speedLabel" destination="nJ6-Iv-pXd" id="Dhp-lT-fct"/>
                         <outlet property="speedSlider" destination="Ea9-z9-T0u" id="VFK-JZ-i4r"/>
                         <outlet property="statusMessage" destination="zJR-DV-LGV" id="dkw-6c-Xbc"/>
+                        <outlet property="stopButton" destination="a4u-II-LwC" id="Brt-H5-wET"/>
                         <outlet property="switchDirectionButton" destination="G53-Lm-6Kf" id="Vpb-VO-sUf"/>
                     </connections>
                 </viewController>

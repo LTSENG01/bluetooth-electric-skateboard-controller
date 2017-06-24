@@ -36,25 +36,54 @@ class ViewController: UIViewController, BTManagerDelegate {
     
     var motionMode: Bool = false
     
+    @IBOutlet weak var motionModeButton: UIButton!
+    
     @IBAction func toggleMotionMode(_ sender: Any) {
         motionMode = !motionMode
         
         if motionMode {
-            print("Starting Device Motion mode!")
+            updateStatusMessage(message: "Starting Device Motion mode")
             motionManager.startDeviceMotionUpdates()
-            readMotionOutput()
+            
+            speedSlider.isEnabled = false
+            switchDirectionButton.isEnabled = false
+            
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(readMotionOutput), userInfo: nil, repeats: motionMode)
         }
         
         if !motionMode {
+            updateStatusMessage(message: "Stopping Device Motion mode.")
             motionManager.stopDeviceMotionUpdates()
+            motionStatus.text = ""
+            
+            speedSlider.isEnabled = true
+            switchDirectionButton.isEnabled = true
+            stop()
         }
     }
     
     @IBOutlet weak var motionStatus: UILabel!
     
     @objc func readMotionOutput() {
-        if let data = motionManager.deviceMotion?.attitude.pitch {
-            print(data)
+        if motionMode {
+            if let data = motionManager.deviceMotion?.attitude.pitch {
+                let printData = floor(data * 100)
+                motionStatus.text = "On: \(printData)"
+                print(printData)
+                
+                if printData > 20 {
+                    // Backwards
+                    let setData = (1.2 * printData) - 20
+                    setSpeed(speed: Int8(setData > 100 ? 100 : setData))
+                } else if printData < -20 {
+                    // Forwards
+                    let setData = (1.2 * printData) + 20
+                    setSpeed(speed: Int8(setData < -100 ? -100 : setData))
+                } else {
+                    setSpeed(speed: 0)
+                }
+                
+            }
         }
     }
     
@@ -88,6 +117,7 @@ class ViewController: UIViewController, BTManagerDelegate {
     
     @IBAction func disconnectButton(_ sender: Any) {
         btManager.cancelScanning()
+        stop()
     }
     
     // MARK: - Status Message
@@ -110,7 +140,6 @@ class ViewController: UIViewController, BTManagerDelegate {
         btConnectionIsNotReady()
         speedLabel.text = "0";
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(readMotionOutput), userInfo: nil, repeats: true)
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -130,23 +159,54 @@ class ViewController: UIViewController, BTManagerDelegate {
     func btConnectionIsReady() {
         speedSlider.isEnabled = true
         switchDirectionButton.isEnabled = true
+        motionModeButton.isEnabled = true;
     }
     
     func btConnectionIsNotReady() {
         speedSlider.isEnabled = false
         switchDirectionButton.isEnabled = false
+        motionModeButton.isEnabled = false;
+        stop()
     }
     
     // MARK: - Methods
     
     func setSpeed(speed: Int8) {
-        if btManager.arduinoPeripheral != nil && btManager.arduinoCharacteristic != nil {
-            btManager.sendData(data: speed)
+        
+        if motionMode && speed > 0 && direction != .Backward {
+            direction = .Backward
+            directionLabel.text = "Backwards"
+            btManager.sendData(data: 101)
+        } else if motionMode && speed < 0 && direction != .Forward {
+            direction = .Forward
+            directionLabel.text = "Forwards"
+            btManager.sendData(data: 102)
+            // TODO
         }
-        speedLabel.text = "\(speed)"
+        
+        if btManager.arduinoPeripheral != nil && btManager.arduinoCharacteristic != nil {
+            btManager.sendData(data: abs(speed))
+        }
+        
+        speedLabel.text = "\(abs(speed))"
     }
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     func stop() {
+        if motionMode {
+            motionMode = false
+            updateStatusMessage(message: "Stopping Device Motion mode.")
+            motionManager.stopDeviceMotionUpdates()
+            motionStatus.text = ""
+            
+            if btManager.arduinoPeripheral != nil {
+                btConnectionIsNotReady()
+            } else {
+                btConnectionIsReady()
+            }
+        }
+        
         setSpeed(speed: 0)
         speedSlider.setValue(0, animated: false)
     }
