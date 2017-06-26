@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import UIKit
 
 protocol BTManagerDelegate {
     func updateStatusMessage(message: String)
@@ -108,6 +109,7 @@ class BTManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         delegate?.updateStatusMessage(message: "\(peripheral.name!) connected!")
+        UIApplication.shared.isIdleTimerDisabled = true;
         peripheral.discoverServices([serviceUUID])
     }
     
@@ -115,6 +117,7 @@ class BTManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         delegate?.updateStatusMessage(message: "**Error: \(peripheral.name!) disconnected!**")
         arduinoPeripheral = nil
         arduinoCharacteristic = nil
+        UIApplication.shared.isIdleTimerDisabled = false;
         delegate?.btConnectionIsNotReady()
         if error != nil {
             delegate?.updateStatusMessage(message: "*Error: \(error!.localizedDescription)")

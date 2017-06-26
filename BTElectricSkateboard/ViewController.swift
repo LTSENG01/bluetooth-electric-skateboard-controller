@@ -116,8 +116,8 @@ class ViewController: UIViewController, BTManagerDelegate {
     }
     
     @IBAction func disconnectButton(_ sender: Any) {
-        btManager.cancelScanning()
         stop()
+        btManager.cancelScanning()
     }
     
     // MARK: - Status Message
@@ -200,7 +200,7 @@ class ViewController: UIViewController, BTManagerDelegate {
             motionManager.stopDeviceMotionUpdates()
             motionStatus.text = ""
             
-            if btManager.arduinoPeripheral != nil {
+            if btManager.arduinoPeripheral == nil {
                 btConnectionIsNotReady()
             } else {
                 btConnectionIsReady()
