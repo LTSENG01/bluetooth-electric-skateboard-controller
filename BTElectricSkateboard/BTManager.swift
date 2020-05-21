@@ -85,6 +85,8 @@ class BTManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             message = "Ready to go! Scanning..."
             central.scanForPeripherals(withServices: [serviceUUID], options: nil)
             break
+        @unknown default:
+            fatalError()
         }
         delegate?.updateStatusMessage(message: message)
     }
